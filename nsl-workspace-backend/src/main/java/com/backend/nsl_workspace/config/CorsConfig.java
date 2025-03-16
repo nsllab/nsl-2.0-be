@@ -13,9 +13,15 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:8080")
+                        .allowedOrigins(
+                                "http://localhost:8080",           // Local backend port
+                                "http://localhost:3000",           // Local frontend port
+                                "https://nsl-workspace.onrender.com",  // Deployed frontend URL
+                                "https://nsl-2-0-fe.onrender.com"      // Alternative frontend URL if different
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*");
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
